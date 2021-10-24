@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react'
 import '../css/bookdetails.css'
 import Header from './Header'
-import { useLocation } from "react-router-dom";
-import {addtoCart ,getCartitems,Quantity} from '../services/dataservices';
-
+import { useLocation  } from "react-router-dom";
+import {addtoCart ,addtoWish,getCartitems,Quantity,Getwishlist} from '../services/dataservices';
+import { useHistory } from "react-router";
 function Bookdetails() {
 
     const [addtobag, showButtons]=React.useState(false)
     const[cartlist,setCartlist]=React.useState([])
+    const[fav,setfavView]=React.useState(false)
+    const[wishlist,setWishlist]=React.useState([])
     const location = useLocation();
     console.log("Data recieved through push",location.state)
 
@@ -18,7 +20,7 @@ function Bookdetails() {
 
     useEffect(() => {
         loadcartitems()
-       
+        loadwishlist()
 
     }, [])
 
@@ -32,9 +34,7 @@ function Bookdetails() {
         }).catch((error)=>{
             console.log(error)
         }) 
-
-         
-       
+        
     }
 
     useEffect(() => {
@@ -43,7 +43,7 @@ function Bookdetails() {
 
     let obj = cartlist.find(obj => obj.product_id._id === bookid)
     
-   
+    
     
 
     const cartCheck = ()=>{
@@ -57,14 +57,16 @@ function Bookdetails() {
     }
 
        
-    const openAddtocart =()=>{
-        showButtons(true)       
-    addtoCart(bookdata._id).then((response)=>{
-        console.log(response)
-    }).catch((error)=>{
-        console.log(error)
-    })
-}
+        const openAddtocart =()=>{       
+        addtoCart(bookdata._id).then((response)=>{
+            loadcartitems()
+            console.log(response)
+        }).catch((error)=>{
+            console.log(error)
+        })
+    }
+
+
 
 
 const incrementcount=()=>{
@@ -103,7 +105,51 @@ const decrementcount=()=>{
             alert("Quantity cannot be zero")
         }
 
-}
+    }
+
+    const  addtoWishlist=()=>{
+        addtoWish(bookdata._id).then((response)=>{
+            console.log(response)
+            loadwishlist()
+        }).catch((error)=>{
+            console.log(error)
+
+        })
+    }
+
+
+    const loadwishlist=()=>{
+        Getwishlist().then((response)=>{
+            console.log(response)
+            setWishlist(response.data.result)
+        }).catch((error)=>{
+            console.log((error))
+        })
+
+
+    }
+
+    useEffect(() => {
+    checkWishlist()
+       
+    }, [wishlist])
+
+    let obj_w = wishlist.find(obj_w => obj_w.product_id._id === bookid)
+    const checkWishlist=()=>{
+        console.log("searching...",obj_w)
+    
+        if(obj_w!=undefined){      
+            console.log("Found a match in cart",obj_w)
+            setfavView(true)
+        }
+
+    }
+    let history=useHistory()
+   const  gotoWishlist =()=>{
+  
+       history.push('/wish')
+   }
+
 
     return (
     <div> <Header/>
@@ -130,20 +176,12 @@ const decrementcount=()=>{
                             <button id="addtobag" onClick={openAddtocart}>ADD TO BAG</button>:
                                 
                             <div id="addtocart">
-                                <div className="less" onClick={decrementcount}>
-                                    −
-                                </div>
+                                <div className="less" onClick={decrementcount}>−</div>
+                                <div className="countbox">{obj.quantityToBuy}</div>
+                                <div className="more" onClick={incrementcount}>＋</div>
 
-                                <div className="countbox">
-                                {obj.quantityToBuy}
-                                </div>
-
-                                <div className="more" onClick={incrementcount}>
-                                    ＋
-                                </div>
-
-                            </div>    }
-                            <button id="wishlist">❤ WISHLIST</button>
+                            </div>}
+                                    {!fav?<button id="wishlist" onClick={addtoWishlist}>❤ WISHLIST</button>:<button onClick={gotoWishlist} id="favourite">❤</button>}
                             </div>  
                         </div>
 

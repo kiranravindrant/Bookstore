@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../css/mycart.css'
 import CustomerDetails from './CustomerDetails'
 import Header from './Header'
-import { getCartitems, Quantity, Removeitem } from '../services/dataservices'
+import { getCartitems, Quantity, Removeitem, sendOrder } from '../services/dataservices'
 
 function Mycart() {
 
@@ -10,7 +10,7 @@ function Mycart() {
     const[showbutton,setView]=useState(true)
     const[order,showOrder]=useState(false)
     const[cartitems,setCartitems]=useState([])
-    // const[count,setCount]=useState(cartitems.quantityToBuy)
+
 
     useEffect(() => {
 
@@ -92,7 +92,6 @@ const loadcartitems=()=>{
 
     }
 
-
     const showaddress=()=>{
         showAddress(true)
         setView(false)
@@ -102,6 +101,37 @@ const loadcartitems=()=>{
     const showsummary=()=>{
         showOrder(true)
 
+    }
+
+    const makeOrder =()=>{
+      
+
+        let arr_ordered_books=[];
+        
+        cartitems.forEach(element=>{
+            let ordered_book={
+                "product_id": element._id,
+                "product_name":element.product_id.bookName,
+                "product_quantity":element.quantityToBuy,
+                "product_price":element.product_id.price
+
+            };
+            arr_ordered_books.push(ordered_book)
+        
+        })
+
+        let Orders={
+            "orders":arr_ordered_books
+
+            }
+
+
+        sendOrder(Orders).then((response)=>{
+            console.log(response)
+        }).catch((error)=>{
+
+            console.log(error)
+        })
 
     }
 
@@ -123,7 +153,7 @@ const loadcartitems=()=>{
 
                         </div>
                     </div>
-                <div className="allcartitems">
+                    <div className="allcartitems">
                     {cartitems.map((obj)=>{ 
                         return (
                         <div key={obj.product_id._id} className="row_cartitem">
@@ -177,10 +207,7 @@ const loadcartitems=()=>{
 
                 </div>
 
-                
-                
-
-
+                               
             </div>
 
 
@@ -208,23 +235,24 @@ const loadcartitems=()=>{
                                 <p>Order Summary</p>
                             </div>
 
-                            <div className="item-bar-order">
+                            {cartitems.map((obj)=>{ 
+                        return (<div className="item-bar-order" key={obj.product_id._id}>
                                     <div className="itemdetails">
                                         <div className="itemposter">
 
                                         </div>
 
                                         <div className="book-details-cart">
-                                            <p id="cartitem-title"> Dont Make me Think</p>
-                                            <p id="cartitem-author">by Steve krug</p>
-                                            <p id="Price">Rs. 1500</p> <span id="discount-price"> Rs.2000</span>
+                                            <p id="cartitem-title"> {obj.product_id.bookName}</p>
+                                            <p id="cartitem-author">{obj.product_id.author}</p>
+                                            <p id="Price">Rs.{obj.product_id.price}</p> <span id="discount-price"> Rs.{obj.product_id.discountPrice + obj.product_id.price}</span>
                                         </div>  
 
                                     </div>
-                            </div>
+                            </div>)})}
 
                             <div className="checkout-bar">
-                                    <div className="checkout">
+                                    <div className="checkout" onClick={makeOrder}>
                                         <p>CHECK OUT</p>
                                     </div>
 

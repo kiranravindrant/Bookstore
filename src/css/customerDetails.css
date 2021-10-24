@@ -51,13 +51,13 @@
 
   .fullname-1r,.mobilenum-1r,.city-3r,.state-3r{
      width:245px;
-     height:45px;
      margin-top: 10px;
 
   }
   .Address-2r{
     width:100%;
     border: 1px solid #70707063 ;
+
   }
 
   .continue-button-container{
@@ -78,5 +78,21 @@
     display: flex;
     justify-content: center;
     cursor: pointer;
+
+  }
+
+ 
+
+
+
+  @media screen and  (max-width:1200px) {
+    .Address-2r {
+      width: 100%;
+      border: 1px solid #70707063;
+      margin-top: 50px;
+  }
+  .row-3-field{
+    margin-top: 50px;
+  }
 
   }

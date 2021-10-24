@@ -317,3 +317,17 @@ border: 1px solid #D1D1D1;
         left: 228px;
         }
 
+    
+
+        
+#favourite{
+    width:170px;
+    height:40px;
+    background-color: #ffffff;
+    color:rgb(151, 4, 4);
+    font-family: Lato;
+    font-size: 30px;
+    text-align: center;
+    border:none;
+    word-spacing: 9px;
+}
