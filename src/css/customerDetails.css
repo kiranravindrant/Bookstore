@@ -96,3 +96,34 @@
   }
 
   }
+
+
+
+    
+@media screen and (min-width:320px) and (max-width:600px) {
+  
+.continue-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  /* border: 1px solid red; */
+  margin-top: 40px;;
+}
+
+.validation-box {
+  width: 100%;
+  margin-top: 16px;
+  border: 1px solid #70707063;
+  height: 467px;
+}
+
+.customer-details-title{
+
+  margin-left: 24px;
+}
+
+.continue-button {
+  width: 124px;
+}
+
+}

@@ -4,22 +4,38 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Bookcard from '../components/Bookcard'
 import { useEffect,useState } from 'react';
-import {getBooks } from '../services/dataservices.js'
+// import {getBooks } from '../services/dataservices.js'
+import { connect } from 'react-redux';
+import { fetchBooklist } from '../reducers/booklist/bookistActions';
 
 function Books(props) {
 
-    const[booklist,setBooklist]=useState([])
+let booksInPage=8  
+let Reducerstate=props.booklistData.slice(0,booksInPage) ;
+let keyword=props.searchquery
+let page=props.page
+if(page===2){
+    Reducerstate=props.booklistData.slice(booksInPage,props.booklistData.length) 
+}
 
+
+const doSearch =(keyword)=>{
+    Reducerstate=props.booklistData.filter((book)=>book.bookName===keyword )
     
+  
+   }
+
+
+if (keyword!=""){
+
+    console.log(keyword)
+    doSearch(keyword)
+    
+}
 
     useEffect(() => {
-    getBooks().then((response)=>{
-        console.log(response)
-        setBooklist(response.data.result)
-    }).catch((error)=>{
-        console.log(error)
-    })
-
+//    console.log(props)  
+     props.fetchBooklistdata()  
     }, [])
 
 
@@ -27,7 +43,6 @@ function Books(props) {
 
 const whenclicked=(data)=>{
 
-    // console.log("test",data)
     props.whenclicked(data)
 }
 
@@ -52,9 +67,10 @@ const whenclicked=(data)=>{
 
                     <div className="bookcard-container"  >
 
-                        {booklist.map((obj,index)=>{
+                        {  Reducerstate.length===0?<h1>Sorry,No books found!!</h1>:
+                            Reducerstate.map((obj,index)=>{
                             return(
-                        <Bookcard whenclicked={()=>whenclicked(obj)}   key={index} bookname={obj.bookName} rating={obj.rating} Author={obj.Author} price={obj.price} discountprice={obj.discountPrice}/> )
+                        <Bookcard whenclicked={()=>whenclicked(obj)}   key={index} bookname={obj.bookName} rating={obj.rating} Author={obj.Author} price={obj.price} discountprice={obj.discountPrice} bookid={obj._id}/> )
 
                         })}
                                                    
@@ -67,4 +83,18 @@ const whenclicked=(data)=>{
     )
 }
 
-export default Books
+const mapStateToProps=state=>{
+    return{
+
+        booklistData:state.reducer.booklist
+    }
+}
+
+const mapDispatchToProps=dispatch=>{ 
+    return{
+
+        fetchBooklistdata:  () => dispatch(fetchBooklist())
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Books)

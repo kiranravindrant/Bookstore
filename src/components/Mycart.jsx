@@ -3,6 +3,7 @@ import '../css/mycart.css'
 import CustomerDetails from './CustomerDetails'
 import Header from './Header'
 import { getCartitems, Quantity, Removeitem, sendOrder } from '../services/dataservices'
+import { useHistory } from 'react-router'
 
 function Mycart() {
 
@@ -10,7 +11,9 @@ function Mycart() {
     const[showbutton,setView]=useState(true)
     const[order,showOrder]=useState(false)
     const[cartitems,setCartitems]=useState([])
-
+    
+    let history=useHistory()
+   
 
     useEffect(() => {
 
@@ -128,6 +131,7 @@ const loadcartitems=()=>{
 
         sendOrder(Orders).then((response)=>{
             console.log(response)
+            history.push('/ordersuccess')
         }).catch((error)=>{
 
             console.log(error)

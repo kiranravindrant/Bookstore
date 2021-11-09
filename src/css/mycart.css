@@ -268,3 +268,66 @@
       cursor: pointer;
       
     }
+
+/* //////////////////////////////////////////////Media Query//////////////////////////////////////////////////// */
+
+    
+@media screen and (min-width:320px) and (max-width:600px) {
+   .mycart-box {
+      border: 1px solid #70707063;
+      width: 100%;
+      height: auto;
+  }
+
+  .cart-outercontainer {
+   width: 100%;
+   height: auto;
+   /* border: 1px solid red; */
+   justify-content: center;
+   display: flex;
+}
+
+.validation-box {
+   width: 100%;
+   margin-top: 16px;
+   border: 1px solid #70707063;
+   height: 425px;
+}
+
+
+  .location-bar {
+   /* width: 129px;
+   height: 40px;
+   border: 1px solid #707070;
+   opacity: 0; */
+   display: none;
+}
+
+  #cartcount-buttons {
+   width: 143px;
+   height: 17px;
+   /* border: 1px solid red; */
+   display: flex;
+   justify-content: space-evenly;
+   position: relative;
+   left: 78px;
+   top: -4px;
+   display: flex;
+   align-items: center;
+}
+
+#button-container {
+   /* border: 2px solid red; */
+   width: 94%;
+   display: flex;
+   justify-content: flex-end;
+   margin-top: 40px;
+}
+
+}
+
+
+@media screen and (min-width:600px) and (max-width:900px) {
+  
+}
+

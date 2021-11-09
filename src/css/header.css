@@ -8,6 +8,9 @@
 
 }
 
+
+
+
 .header-innerbox{
     /* border:2px solid yellow; */
     width:80%;
@@ -47,7 +50,17 @@ font-size: 20px;
     border-radius: 3px;
     background-color: white;
     margin-left:5% ;
+    display: flex;
 }
+
+#searchbar{
+/* border:2px solid red; */
+width:100%;
+border: none;
+outline: none;
+
+}
+
 
 .right-options{
     height:57px;
@@ -72,4 +85,15 @@ font-size: 20px;
     width:50%;
     height:57px;
     cursor: pointer;
+}
+
+@media screen and (max-width:607px) {
+    .right-options {
+        height: 57px;
+        width: 60%;
+        margin-left: 13%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
 }

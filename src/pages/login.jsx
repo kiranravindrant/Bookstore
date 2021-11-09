@@ -167,7 +167,7 @@ const userlogin=()=>{
 
 
     return (
-        <div className='mainContainer'>
+        <div data-test="component-login"  className='mainContainer'>
 
            
                 
@@ -189,7 +189,7 @@ const userlogin=()=>{
                     <div className="innerbox1">
                             <div className="first-row-text">
                                 <div onClick={showlogin}>Login</div>
-                                <div onClick={showsignup}>Signup</div>
+                                <div id="user-signup"onClick={showsignup}>Signup</div>
 
 
                             </div>
@@ -202,6 +202,7 @@ const userlogin=()=>{
                                         error={erroremail}
                                         label="Email id"
                                         id="outlined-size-small"
+                                        id="email-inputfield"
                                         defaultValue=""
                                         size="small"
                                         className="login-fields"

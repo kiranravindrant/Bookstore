@@ -1,9 +1,16 @@
 import React from 'react'
 import '../css/bookcard.css';
+import { connect } from 'react-redux'
 
 function Bookcard(props) {
+
+    const onBookclick=()=>{
+        props.whenclicked()
+        props.dispatch({ type: "CLICK_ON_BOOK",payload:props.bookid})
+        
+    }
     return (
-        <div className="card-container" onClick={props.whenclicked}>
+        <div className="card-container" onClick={onBookclick}>
             <div className="image-bookcard">
                 <div className="bookimage">
 
@@ -26,4 +33,6 @@ function Bookcard(props) {
     )
 }
 
-export default Bookcard
+
+export default connect()(Bookcard)
+

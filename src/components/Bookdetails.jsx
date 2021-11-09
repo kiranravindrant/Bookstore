@@ -17,6 +17,8 @@ function Bookdetails() {
     let bookid=bookdata._id
     console.log(bookid)
 
+   
+
 
     useEffect(() => {
         loadcartitems()
@@ -41,7 +43,7 @@ function Bookdetails() {
       cartCheck()
     }, [cartlist])
 
-    let obj = cartlist.find(obj => obj.product_id._id === bookid)
+    let obj = cartlist.find(obj => obj.product_id._id ===bookid)
     
     
     
@@ -134,7 +136,7 @@ const decrementcount=()=>{
        
     }, [wishlist])
 
-    let obj_w = wishlist.find(obj_w => obj_w.product_id._id === bookid)
+    let obj_w = wishlist.find(obj_w => obj_w.product_id._id ===bookid)
     const checkWishlist=()=>{
         console.log("searching...",obj_w)
     

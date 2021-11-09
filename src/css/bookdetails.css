@@ -110,7 +110,7 @@ border: 1px solid #D1D1D1;
 
 .book-description-box{
     width:550px;
-
+    margin-top: 20px;
 
 
 }
@@ -247,7 +247,7 @@ border: 1px solid #D1D1D1;
     }  
 
     .feedback{
-        width:100%;
+        width:100%; 
         height: 242px;
         margin-top: 25px;
     }
@@ -261,6 +261,7 @@ border: 1px solid #D1D1D1;
         font-size: 18px;
         font-weight: 600;
         font-family: 'Roboto';
+        margin-top: 80px;
     }
     .rating-pad{
     width: 100%;

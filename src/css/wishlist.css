@@ -141,3 +141,63 @@
    margin-left: 42px;
    font-family:'Lato';
 }
+
+
+@media screen and (min-width:320px) and (max-width:600px) {
+   .mywishlist-box {
+      border: 1px solid #707070  63;
+      width: 100%;
+      height: auto;  
+  }
+
+
+  .wishlist-outercontainer {
+   width: 100%;
+   height: auto;
+   /* border: 1px solid red; */
+   justify-content: center;
+   display: flex;
+}
+
+.remove-from-wishlist {
+   font-size: 10px;
+   font-family: 'Lato';
+   font-weight: 600;
+   cursor: pointer;
+   /* border: 1px solid red; */
+   display: flex;
+   align-items: center;
+   position: relative;
+   left: 20px;
+}
+
+   
+}
+
+@media screen and (min-width:600px) and (max-width:900px) {
+   .mywishlist-box {
+      border: 1px solid #707070  63;
+      width: 100%;
+      height: auto;  
+  }
+
+
+  .wishlist-outercontainer {
+   width: 100%;
+   height: auto;
+   /* border: 1px solid red; */
+   justify-content: center;
+   display: flex;
+}
+
+
+
+.remove-from-wishlist {
+ 
+   left: 135%;
+}
+
+
+
+}
+

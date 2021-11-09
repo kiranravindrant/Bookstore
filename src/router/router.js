@@ -6,9 +6,14 @@ import Bookdetails from '../components/Bookdetails';
 import Mycart from '../components/Mycart';
 import Wishlist from '../components/Wishlist';
 import Orderplaced from '../components/Orderplaced';
+import { Provider } from 'react-redux';
+import store from '../store.js'
+
+
 function Router() {
     return (
         <>
+            <Provider store={store}>
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/" component={Login} />
@@ -19,6 +24,7 @@ function Router() {
                     <Route path="/ordersuccess" component={Orderplaced}/>
                 </Switch>
             </BrowserRouter>
+            </Provider >
         </>
     )
 }
