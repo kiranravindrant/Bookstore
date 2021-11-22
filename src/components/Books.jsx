@@ -28,13 +28,13 @@ const doSearch =(keyword)=>{
 
 if (keyword!=""){
 
-    console.log(keyword)
+
     doSearch(keyword)
     
 }
 
     useEffect(() => {
-//    console.log(props)  
+
      props.fetchBooklistdata()  
     }, [])
 
@@ -65,12 +65,13 @@ const whenclicked=(data)=>{
                         </div>
                     </div>
 
-                    <div className="bookcard-container"  >
+                    <div  className="bookcard-container"  >
 
                         {  Reducerstate.length===0?<h1>Sorry,No books found!!</h1>:
                             Reducerstate.map((obj,index)=>{
                             return(
-                        <Bookcard whenclicked={()=>whenclicked(obj)}   key={index} bookname={obj.bookName} rating={obj.rating} Author={obj.Author} price={obj.price} discountprice={obj.discountPrice} bookid={obj._id}/> )
+                                
+                        <Bookcard  whenclicked={()=>whenclicked(obj)}   key={index} bookname={obj.bookName} rating={obj.rating} Author={obj.Author} price={obj.price} discountprice={obj.discountPrice} bookid={obj._id}/> )
 
                         })}
                                                    

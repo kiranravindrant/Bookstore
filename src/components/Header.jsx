@@ -62,7 +62,7 @@ const [anchorEl, setAnchorEl] = React.useState(null);
                 <div className="searchbar">
                 <IconButton aria-label="search"><SearchIcon color="action"/></IconButton>
                 
-                <input id="searchbar" type="text"  placeholder="Search" onChange={takeSearchkey}/>
+                <input data-testid="searchbar"id="searchbar" type="text"  placeholder="Search" onChange={takeSearchkey}/>
     
                      
 

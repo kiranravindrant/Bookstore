@@ -45,7 +45,7 @@ const loadcartitems=()=>{
         "quantityToBuy":q+1,
         "cartid":cartid
       }
-      console.log(qdata,"check the object")
+    //   console.log(qdata,"check the object")
        
 
         Quantity(qdata).then((response)=>{
@@ -67,7 +67,7 @@ const loadcartitems=()=>{
         "quantityToBuy":q-1,
         "cartid":cartid
       }
-      console.log(qdata,"check the object")
+    //   console.log(qdata,"check the object")
        
       if(q>1){
         Quantity(qdata).then((response)=>{
@@ -179,11 +179,11 @@ const loadcartitems=()=>{
                                         −
                                     </div>
 
-                                    <div className="countbox-view">
+                                    <div data-testid="counter-text" className="countbox-view">
                                        {obj.quantityToBuy}
                                     </div>
 
-                                    <div className="more-button" onClick={()=>incrementcount(obj)}>
+                                    <div data-testid="more-button" className="more-button" onClick={()=>incrementcount(obj)}>
                                         ＋
                                     </div>
 
@@ -198,7 +198,7 @@ const loadcartitems=()=>{
                     <div className="row_cartitem-remove">
                                                               
                             <div id="button-container">
-                                {showbutton?<div className="placeorder" onClick={showaddress}>
+                                {showbutton?<div data-testid="place-btn" className="placeorder" onClick={showaddress}>
                                     <p>PLACE ORDER</p>
                                 </div>:console.log("Place holder clicked!!")}
                             </div>

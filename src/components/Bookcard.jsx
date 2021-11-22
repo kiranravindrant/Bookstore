@@ -17,7 +17,7 @@ function Bookcard(props) {
                 </div>
             </div>
 
-            <div className="details-bookcard">
+            <div data-testid='bookitem' className="details-bookcard">
                 <p id="title-card">{props.bookname}</p>
                 <p id ="author-card">{props.Author}</p>
                 <div className="ratingbox">

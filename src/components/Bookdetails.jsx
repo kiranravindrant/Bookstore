@@ -175,7 +175,7 @@ const decrementcount=()=>{
 
                             <div className="bottom-buttons">
                                 {!addtobag?
-                            <button id="addtobag" onClick={openAddtocart}>ADD TO BAG</button>:
+                            <button data-testid ="addtobag"id="addtobag" onClick={openAddtocart}>ADD TO BAG</button>:
                                 
                             <div id="addtocart">
                                 <div className="less" onClick={decrementcount}>−</div>
